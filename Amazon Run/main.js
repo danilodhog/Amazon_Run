@@ -165,7 +165,7 @@ function Start () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   
-  ctx.fillStyle="#006400";
+  ctx.fillStyle="#F4A460";
   ctx.beginPath();
   ctx.fillRect(0,600,2000,1000);
   ctx.stroke();
