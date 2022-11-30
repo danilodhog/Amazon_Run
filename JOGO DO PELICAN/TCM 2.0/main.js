@@ -189,6 +189,7 @@ function Start () {
   if (localStorage.getItem('highscore')) {
     highscore = localStorage.getItem('highscore');
   }
+		
 
   player = new Player(50, 0, 80, 120, '#FFFAFA', 80, 10, 80, 35, '#FFFF00', 60, 10, 10, 35, '#1C1C1C');
   
@@ -233,7 +234,6 @@ function Update () {
     ) {
       obstacles = [];
       score = 0;
-      highscore = 0;
       spawnTimer = initialSpawnTimer;
       gameSpeed = 3;
 	 //código de atualizar highscore
