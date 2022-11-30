@@ -23,7 +23,7 @@ document.addEventListener('keyup', function (evt) {
 });
 
 
-
+//código do jogador
 class Player {
   constructor (x, y, w, h, c, a, b, d, e, f, g, i, j, k, l) {
     this.x = x;
@@ -51,13 +51,14 @@ class Player {
   }
 
   Animate () {
-    // Pular
+    // Input de pular
     if (keys['Space'] || keys['KeyW']) {
       this.Jump();
     } else {
       this.jumpTimer = 0;
     }
-
+	  
+    // Input/Código de agachar
     if (keys['ShiftLeft'] || keys['KeyS']) {
       this.h = this.originalHeight / 2;
     } else {
@@ -79,6 +80,7 @@ class Player {
     this.Draw();
   }
 
+  // Código de pular
   Jump () {
     if (this.grounded && this.jumpTimer == 0) {
       this.jumpTimer = 1;
@@ -101,6 +103,7 @@ class Player {
   }
 }
 
+//Programação dos obstáculos
 class Obstacle {
   constructor (x, y, w, h, c) {
     this.x = x;
@@ -146,7 +149,7 @@ class Text {
   }
 }
 
-// Funcoes
+// Código de spawnar os obstáculos
 function SpawnObstacle () {
   let size = RandomIntInRange(155, 100);
   let type = RandomIntInRange(0, 1);
@@ -158,11 +161,12 @@ function SpawnObstacle () {
   obstacles.push(obstacle);
 }
 
-
+//Função de randomizar os obstáculos
 function RandomIntInRange (min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
+//função de começar o jogo
 function Start () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -214,7 +218,6 @@ function Update () {
     }
   }
 
-  // Spawnar Inimigos
   for (let i = 0; i < obstacles.length; i++) {
     let o = obstacles[i];
 
@@ -230,8 +233,10 @@ function Update () {
     ) {
       obstacles = [];
       score = 0;
+      highscore = 0;
       spawnTimer = initialSpawnTimer;
       gameSpeed = 3;
+	 //código de atualizar highscore
       window.localStorage.setItem('highscore', highscore);
     }
 
@@ -240,6 +245,7 @@ function Update () {
 
   player.Animate();
 
+//código dos textos que aperencem na HUD
   score++;
   scoreText.t = "Score: " + score;
   scoreText.Draw();
